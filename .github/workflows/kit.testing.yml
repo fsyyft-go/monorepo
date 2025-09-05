@@ -5,9 +5,11 @@ on:
   push:
     paths:
       - 'kit/testing/**'
+      - '.github/workflows/kit.testing.yml'
   pull_request:
     paths:
       - 'kit/testing/**'
+      - '.github/workflows/kit.testing.yml'
 jobs:
   # 定义测试作业。
   test:
