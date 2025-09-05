@@ -57,6 +57,7 @@ jobs:
       - name: Run golangci-lint
         run: |
           # 安装 golangci-lint。
+          # 注意 v1 v2 版本存在较大差异，对配置文件也不兼容。
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
           # 显示版本信息。
           golangci-lint version
