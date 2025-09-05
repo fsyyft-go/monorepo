@@ -1,7 +1,6 @@
-# golangci-lint 配置版本
-version = 2
 # 参考：
 #   https://golangci-lint.run/usage/configuration/#config-file
+#   除了 brew 外，目前使用的还是 1.x 版本，当前配置先全部兼容 1.x。
 
 [run]
 # 分析超时时间，默认 1 分钟。
