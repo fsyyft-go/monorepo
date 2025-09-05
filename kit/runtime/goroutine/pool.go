@@ -331,7 +331,7 @@ func Submit(task func()) error {
 		defer poolDefaultLocker.Unlock()
 		if nil == poolDefault {
 			if p, cleanup, err := NewGoroutinePool(WithName("default")); nil == err {
-				poolDefault = p.(*goroutinePool)
+				poolDefault = p.(*goroutinePool) // nolint: errcheck
 			} else {
 				cleanup()
 				return err
