@@ -50,7 +50,7 @@ type (
 func InitLogger(options ...Option) error {
 	logger, err := NewLogger(options...)
 	if nil != err {
-		return fmt.Errorf("初始化日志实例失败：%v", err)
+		return fmt.Errorf("初始化日志实例失败：%w", err)
 	}
 
 	SetLogger(logger)
