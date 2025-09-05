@@ -11,7 +11,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	kittesting "github.com/fsyyft-go/kit/testing"
+	kittesting "github.com/fsyyft-go/monorepo/kit/testing"
 )
 
 func TestGetGoID(t *testing.T) {

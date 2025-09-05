@@ -11,7 +11,7 @@ import (
 
 	"github.com/panjf2000/ants/v2"
 
-	kitlog "github.com/fsyyft-go/kit/log"
+	kitlog "github.com/fsyyft-go/monorepo/kit/log"
 )
 
 // 默认配置值。

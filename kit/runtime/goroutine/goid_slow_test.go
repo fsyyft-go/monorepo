@@ -10,7 +10,7 @@ import (
 
 	"github.com/stretchr/testify/assert"
 
-	kittesting "github.com/fsyyft-go/kit/testing"
+	kittesting "github.com/fsyyft-go/monorepo/kit/testing"
 )
 
 // TestGetGoIDSlow 使用 assert 包来验证 getGoIDSlow 函数的行为。
