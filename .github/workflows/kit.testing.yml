@@ -44,12 +44,16 @@ jobs:
         run: |
           cd ${{ env.KIT_TESTING_DIR }}
           make verify
-      # 使用 golangci-lint 官方 action 运行代码质量检查。
+      # 运行 golangci-lint 进行代码质量检查。
       - name: Run golangci-lint
-        uses: golangci/golangci-lint-action@v3
-        with:
-          # 使用最新版本的 golangci-lint。
-          version: latest
+        run: |
+          # 安装 golangci-lint。
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@latest
+          # 显示版本信息。
+          golangci-lint version
+          # 运行 golangci-lint。
+          cd ${{ env.KIT_TESTING_DIR }}
+          make lint
       # 使用 Makefile 中的 test 命令运行测试。
       - name: Run tests
         run: |
