@@ -7,6 +7,7 @@ package log
 import (
 	"os"
 	"path/filepath"
+	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -19,11 +20,11 @@ import (
 // - 标准库文件日志
 // - Logrus 文件日志
 // - 结构化字段支持
-func TestLoggers(t *testing.T) {
+func TestLoggers(t *testing.T) { // nolint: funlen
 	// 创建临时测试目录用于存放日志文件。
 	// 使用系统临时目录确保在不同环境下都能正常工作。
 	tmpDir := filepath.Join(os.TempDir(), "apisix-metric-test")
-	err := os.MkdirAll(tmpDir, 0755)
+	err := os.MkdirAll(tmpDir, defaultDirMode)
 	assert.NoError(t, err)
 	// 测试完成后清理临时目录。
 	defer os.RemoveAll(tmpDir) //nolint:errcheck
@@ -122,7 +123,7 @@ func TestLoggers(t *testing.T) {
 func TestNewLogger(t *testing.T) {
 	// 创建临时测试目录。
 	tmpDir := filepath.Join(os.TempDir(), "apisix-metric-test-new")
-	err := os.MkdirAll(tmpDir, 0755)
+	err := os.MkdirAll(tmpDir, defaultDirMode)
 	assert.NoError(t, err)
 	defer os.RemoveAll(tmpDir) //nolint:errcheck
 
@@ -145,7 +146,10 @@ func TestNewLogger(t *testing.T) {
 
 	// 验证日志文件。
 	logger.Info("测试自定义日志配置。")
-	content, err := os.ReadFile(logPath)
+	if !strings.HasPrefix(logPath, tmpDir) {
+		t.Fatalf("非法文件路径: %s", logPath)
+	}
+	content, err := os.ReadFile(logPath) // nolint:gosec
 	assert.NoError(t, err)
 	assert.NotEmpty(t, content)
 }
@@ -160,7 +164,7 @@ func TestNewLogger(t *testing.T) {
 func TestLogLevels(t *testing.T) {
 	// 创建临时测试目录。
 	tmpDir := filepath.Join(os.TempDir(), "apisix-metric-test-levels")
-	err := os.MkdirAll(tmpDir, 0755)
+	err := os.MkdirAll(tmpDir, defaultDirMode)
 	assert.NoError(t, err)
 	defer os.RemoveAll(tmpDir) //nolint:errcheck
 
@@ -190,8 +194,11 @@ func TestLogLevels(t *testing.T) {
 	logger.Error("错误信息。")
 	logger.Errorf("带格式的错误信息：%s。", "测试")
 
+	if !strings.HasPrefix(logPath, tmpDir) {
+		t.Fatalf("非法文件路径: %s", logPath)
+	}
 	// 验证日志文件内容。
-	content, err := os.ReadFile(logPath)
+	content, err := os.ReadFile(logPath) // nolint:gosec
 	assert.NoError(t, err)
 	assert.NotEmpty(t, content)
 }
@@ -205,7 +212,7 @@ func TestLogLevels(t *testing.T) {
 func TestWithFieldsAndFormat(t *testing.T) {
 	// 创建临时测试目录。
 	tmpDir := filepath.Join(os.TempDir(), "apisix-metric-test-fields")
-	err := os.MkdirAll(tmpDir, 0755)
+	err := os.MkdirAll(tmpDir, defaultDirMode)
 	assert.NoError(t, err)
 	defer os.RemoveAll(tmpDir) //nolint:errcheck
 
@@ -234,8 +241,11 @@ func TestWithFieldsAndFormat(t *testing.T) {
 		WithField("user_id", "456").
 		Info("链式字段测试。")
 
+	if !strings.HasPrefix(logPath, tmpDir) {
+		t.Fatalf("非法文件路径: %s", logPath)
+	}
 	// 验证日志文件内容。
-	content, err := os.ReadFile(logPath)
+	content, err := os.ReadFile(logPath) // nolint:gosec
 	assert.NoError(t, err)
 	assert.NotEmpty(t, content)
 }

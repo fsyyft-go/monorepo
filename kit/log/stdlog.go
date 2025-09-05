@@ -57,7 +57,7 @@ func NewStdLogger(output string) (Logger, error) {
 
 		// 打开或创建日志文件。
 		// 使用 0666 权限确保文件可读可写。
-		file, err := os.OpenFile(output, os.O_CREATE|os.O_WRONLY|os.O_APPEND, defaultFilePermission)
+		file, err := os.OpenFile(output, os.O_CREATE|os.O_WRONLY|os.O_APPEND, defaultFilePermission) // nolint:gosec
 		if nil != err {
 			return nil, err
 		}
