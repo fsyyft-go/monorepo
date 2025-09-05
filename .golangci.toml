@@ -1,0 +1,173 @@
+# 参考：
+#   https://golangci-lint.run/usage/configuration/#config-file
+#   除了 brew 外，目前使用的还是 1.x 版本，当前配置先全部兼容 1.x。
+
+[run]
+# 分析超时时间，默认 1 分钟。
+timeout = "10m"
+# 当发现至少一个问题时退出代码，默认值为 1。
+issues-exit-code = 1
+# 是否包含测试文件，默认为 true。
+tests = true
+# 允许多个并行运行的 golangci-lint 实例。如果为 false（默认值）- golangci-lint 在启动时获得文件锁定。
+allow-parallel-runners = false
+
+[output]
+# 输出格式：colored-line-number|line-number|json|tab|checkstyle|code-climate|junit-xml|github-actions，默认为 colored-line-number。
+[formats]
+colored-line-number = true
+# 打印行号，默认为 true。
+print-issued-lines = true
+# 打印 linter 名称，默认为 true。
+print-linter-name = true
+# 问题输出行唯一，默认为 true。
+uniq-by-line = true
+# 为输出文件引用添加前缀，默认为空。
+path-prefix = ""
+# 按文件路径、行和列对结果进行排序。
+sort-results = true
+
+[linters]
+enable-all = false
+disable-all = false
+enable = [
+    # 默认启用。
+    "bodyclose",
+    "errcheck",
+    # "gosimple", # 已注释：当前 golangci-lint 版本不支持该 linter
+    "govet",
+    "ineffassign",
+    "staticcheck",
+    # "typecheck", # 已注释：typecheck 不是 linter，golangci-lint 不支持启用或禁用 typecheck
+    "unused",
+    # 性能相关。
+    "prealloc",
+    # BUG 相关。
+    "asasalint",
+    "asciicheck",
+    "bidichk",
+    "bodyclose",
+    "durationcheck",
+    "errorlint",
+    "copyloopvar",
+    "gocheckcompilerdirectives",
+    "gosec",
+    "loggercheck",
+    "makezero",
+    "nilerr",
+    "noctx",
+    "reassign",
+    "sqlclosecheck",
+    # 测试相关。
+    "testableexamples",
+    # 复杂性相关。
+    "cyclop",
+    "funlen",
+    "gocognit",
+    "gocyclo",
+    "maintidx"
+
+]
+disable = []
+# 运行快速测试，对第一次运行不会起作用。
+fast = false
+
+[linters-settings]
+
+[linters-settings.deadcode]
+
+# https://github.com/timakin/bodyclose
+# 检查 HTTP Body 是否关闭。
+[linters-settings.bodyclose]
+
+# https://golangci-lint.run/usage/linters/#errcheck
+# 用于 Go 源代码的检查错误的程序；在某些情况下，这些未检查的错误可能是关键的错误。
+[linters-settings.errcheck]
+# 检查类型断言的错误，例如 a := b.(MyStruct)，默认为 false。
+check-type-assertions = true
+# 报告错误赋值给空白标识符，例如 num, _ := strconv.Atoi(numStr)，默认为 false。
+check-blank = false
+# 要排除在检查之外的函数列表，其中每个条目都是要排除的单个函数，详见 https://github.com/kisielk/errcheck#excluding-functions 。
+exclude-functions = []
+
+# https://github.com/dominikh/go-tools/tree/master/simple
+# 用于 Go 源代码的 Linter，专门用于简化代码。
+[linters-settings.gosimple]
+# Go 版本到目标。默认值为 1.13 。
+run.go = "1.23"
+# https://staticcheck.io/docs/options#checks
+checks = ["all"]
+
+# https://golang.org/cmd/vet/
+# 检查 Go 的源代码并报告可疑的构造，例如 Printf 调用的参数与格式字符串不一致。
+[linters-settings.govet]
+# 报告阴影变量。
+shadow = true
+# 不能和 enable-all 为 true 同时存在。
+# enable = ["atomicalign"]
+# fieldalignment 结构体内存对齐检查。
+# shadow 变量重名检查，调整好以后，需要开启。
+disable = ["fieldalignment", "shadow"]
+enable-all = true
+disable-all = false
+
+[linters-settings.govet.settings]
+[linters-settings.govet.settings.printf]
+# 如果定义一个空数组，在检查过程中会发出警告。
+# funcs = []
+
+# https://github.com/gordonklaus/ineffassign
+# 检测已赋值的变量未使用。
+[linters-settings.ineffassign]
+
+# https://staticcheck.io/
+# 应用大量的静态分析检查。
+[linters-settings.staticcheck]
+# Go 版本到目标。默认值为 1.13 。
+run.go = "1.23"
+# https://staticcheck.io/docs/options#checks
+checks = ["all"]
+# https://staticcheck.io/docs/options#dot_import_whitelist
+dot-import-whitelist = ["fmt"]
+# https://staticcheck.io/docs/options#initialisms
+initialisms = ["ACL", "API", "ASCII", "CPU", "CSS", "DNS", "EOF", "GUID", "HTML", "HTTP", "HTTPS", "ID", "IP", "JSON", "QPS", "RAM", "RPC", "SLA", "SMTP", "SQL", "SSH", "TCP", "TLS", "TTL", "UDP", "UI", "GID", "UID", "UUID", "URI", "URL", "UTF8", "VM", "XML", "XMPP", "XSRF", "XSS"]
+# https://staticcheck.io/docs/options#http_status_code_whitelist
+http-status-code-whitelist = ["200", "400", "404", "500"]
+
+# https://github.com/opennota/check
+# 查找未使用的结构字段。
+[linters-settings.structcheck]
+
+# 在编译器之前，进行类型检查。
+[linters-settings.typecheck]
+
+# https://github.com/dominikh/go-tools/tree/master/unused
+# 检查未使用的常量、变量、函数和类型。
+[linters-settings.unused]
+# Go 版本到目标。默认值为 1.13 。
+go = "1.20"
+
+# https://github.com/opennota/check
+# 查找未使用的全局变量和常量。
+[linters-settings.varcheck]
+
+[linters-settings.funlen]
+lines = 120
+statements = 80
+
+[linters-settings.gocognit]
+min-complexity = 100
+
+[linters-settings.cyclop]
+max-complexity = 100
+package-average = 0.0
+skip-tests = false
+
+# 检查代码中的切片使用，找出可以预先分配的可能。
+[linters-settings.prealloc]
+simple = true
+range-loops = true
+for-loops = false
+
+[linters-settings.gosec]
+excludes = ["G401", "G402", "G403", "G404", "G501", "G502", "G503", "G504", "G505"]
