@@ -1,3 +1,5 @@
+# golangci-lint 配置版本
+version = 2
 # 参考：
 #   https://golangci-lint.run/usage/configuration/#config-file
 
@@ -13,7 +15,8 @@ allow-parallel-runners = false
 
 [output]
 # 输出格式：colored-line-number|line-number|json|tab|checkstyle|code-climate|junit-xml|github-actions，默认为 colored-line-number。
-formats = "colored-line-number"
+[formats]
+colored-line-number = true
 # 打印行号，默认为 true。
 print-issued-lines = true
 # 打印 linter 名称，默认为 true。
@@ -32,11 +35,11 @@ enable = [
     # 默认启用。
     "bodyclose",
     "errcheck",
-    "gosimple",
+    # "gosimple", # 已注释：当前 golangci-lint 版本不支持该 linter
     "govet",
     "ineffassign",
     "staticcheck",
-    "typecheck",
+    # "typecheck", # 已注释：typecheck 不是 linter，golangci-lint 不支持启用或禁用 typecheck
     "unused",
     # 性能相关。
     "prealloc",
