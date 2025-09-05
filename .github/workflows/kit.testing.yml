@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         # 定义测试矩阵，在多个 Go 版本上运行测试。
-        go-version: ['1.22', '1.23', '1.24', '1.25']
+        go-version: ['1.23', '1.24', '1.25']
       # 某个版本失败时不中断其他版本的测试。
       fail-fast: false
     steps:
