@@ -405,7 +405,7 @@ func NewLogger(options ...Option) (Logger, error) {
 	}
 
 	if nil != err {
-		return nil, fmt.Errorf("创建日志实例失败：%v", err)
+		return nil, fmt.Errorf("创建日志实例失败：%w", err)
 	}
 
 	// 设置日志级别。
