@@ -145,14 +145,14 @@ build_single() {
     
     # 如果启用版本信息，添加版本信息到 ldflags
     if [ "$ENABLE_VERSION_INFO" = true ]; then
-        ldflags="-X github.com/fsyyft-go/kit/go/build.version=${VERSION} \
-                 -X github.com/fsyyft-go/kit/go/build.gitVersion=${GIT_COMMIT} \
-                 -X github.com/fsyyft-go/kit/go/build.libGitVersion=${LIB_GIT_COMMIT} \
-                 -X github.com/fsyyft-go/kit/go/build.buildTimeString=${BUILD_TIME} \
-                 -X github.com/fsyyft-go/kit/go/build.buildLibraryDirectory=${LIBRARY_DIR} \
-                 -X github.com/fsyyft-go/kit/go/build.buildWorkingDirectory=${WORKING_DIR} \
-                 -X github.com/fsyyft-go/kit/go/build.buildGopathDirectory=${GOPATH} \
-                 -X github.com/fsyyft-go/kit/go/build.buildGorootDirectory=${GOROOT}"
+        ldflags="-X github.com/fsyyft-go/monorepo/kit/go/build.version=${VERSION} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.gitVersion=${GIT_COMMIT} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.libGitVersion=${LIB_GIT_COMMIT} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildTimeString=${BUILD_TIME} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildLibraryDirectory=${LIBRARY_DIR} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildWorkingDirectory=${WORKING_DIR} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildGopathDirectory=${GOPATH} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildGorootDirectory=${GOROOT}"
         
         print_info "构建带版本信息的可执行文件..."
         go build -ldflags "$ldflags" -o "$OUTPUT_DIR/$OUTPUT_NAME" "$SOURCE_FILE"
@@ -175,14 +175,14 @@ build_for_platform() {
     
     local ldflags=""
     if [ "$ENABLE_VERSION_INFO" = true ]; then
-        ldflags="-X github.com/fsyyft-go/kit/go/build.version=${VERSION} \
-                 -X github.com/fsyyft-go/kit/go/build.gitVersion=${GIT_COMMIT} \
-                 -X github.com/fsyyft-go/kit/go/build.libGitVersion=${LIB_GIT_COMMIT} \
-                 -X github.com/fsyyft-go/kit/go/build.buildTimeString=${BUILD_TIME} \
-                 -X github.com/fsyyft-go/kit/go/build.buildLibraryDirectory=${LIBRARY_DIR} \
-                 -X github.com/fsyyft-go/kit/go/build.buildWorkingDirectory=${WORKING_DIR} \
-                 -X github.com/fsyyft-go/kit/go/build.buildGopathDirectory=${GOPATH} \
-                 -X github.com/fsyyft-go/kit/go/build.buildGorootDirectory=${GOROOT}"
+        ldflags="-X github.com/fsyyft-go/monorepo/kit/go/build.version=${VERSION} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.gitVersion=${GIT_COMMIT} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.libGitVersion=${LIB_GIT_COMMIT} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildTimeString=${BUILD_TIME} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildLibraryDirectory=${LIBRARY_DIR} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildWorkingDirectory=${WORKING_DIR} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildGopathDirectory=${GOPATH} \
+                 -X github.com/fsyyft-go/monorepo/kit/go/build.buildGorootDirectory=${GOROOT}"
     fi
     
     print_info "构建 $os/$arch..."

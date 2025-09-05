@@ -26,7 +26,7 @@ runtime 包的设计遵循了"组合优于继承"的 Go 语言哲学，通过接
 ### 安装命令
 
 ```bash
-go get -u github.com/fsyyft-go/kit/runtime
+go get -u github.com/fsyyft-go/monorepo/kit/runtime
 ```
 
 ## 快速开始
@@ -41,7 +41,7 @@ import (
 	"log"
 	"time"
 
-	"github.com/fsyyft-go/kit/runtime"
+	"github.com/fsyyft-go/monorepo/kit/runtime"
 )
 
 // MyService 实现了 runtime.Runner 接口

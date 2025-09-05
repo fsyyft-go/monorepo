@@ -47,7 +47,7 @@ import (
 	"fmt"
 	"sync"
 
-	"github.com/fsyyft-go/kit/runtime/goroutine"
+	"github.com/fsyyft-go/monorepo/kit/runtime/goroutine"
 )
 
 func main() {
@@ -96,7 +96,7 @@ import (
 	"fmt"
 	"log"
 	
-	"github.com/fsyyft-go/kit/runtime/goroutine"
+	"github.com/fsyyft-go/monorepo/kit/runtime/goroutine"
 )
 
 func main() {

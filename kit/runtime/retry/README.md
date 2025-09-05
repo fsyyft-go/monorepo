@@ -28,7 +28,7 @@
 ### 安装命令
 
 ```bash
-go get -u github.com/fsyyft-go/kit/runtime/retry
+go get -u github.com/fsyyft-go/monorepo/kit/runtime/retry
 ```
 
 ## 快速开始
@@ -40,7 +40,7 @@ package main
 
 import (
     "fmt"
-    "github.com/fsyyft-go/kit/runtime/retry"
+    "github.com/fsyyft-go/monorepo/kit/runtime/retry"
 )
 
 func main() {
@@ -70,7 +70,7 @@ import (
     "context"
     "fmt"
     "time"
-    "github.com/fsyyft-go/kit/runtime/retry"
+    "github.com/fsyyft-go/monorepo/kit/runtime/retry"
 )
 
 func main() {

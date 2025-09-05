@@ -37,7 +37,7 @@ goroutine 包提供了在 Go 程序中获取 goroutine ID 的功能和高效的�
 ### 安装命令
 
 ```bash
-go get -u github.com/fsyyft-go/kit/runtime/goroutine
+go get -u github.com/fsyyft-go/monorepo/kit/runtime/goroutine
 ```
 
 ## 快速开始
@@ -51,7 +51,7 @@ package main
 
 import (
     "fmt"
-    "github.com/fsyyft-go/kit/runtime/goroutine"
+    "github.com/fsyyft-go/monorepo/kit/runtime/goroutine"
 )
 
 func main() {
@@ -76,7 +76,7 @@ import (
     "fmt"
     "sync"
     "time"
-    "github.com/fsyyft-go/kit/runtime/goroutine"
+    "github.com/fsyyft-go/monorepo/kit/runtime/goroutine"
 )
 
 func main() {
@@ -177,7 +177,7 @@ import (
     "fmt"
     "log"
     "sync"
-    "github.com/fsyyft-go/kit/runtime/goroutine"
+    "github.com/fsyyft-go/monorepo/kit/runtime/goroutine"
 )
 
 func main() {
@@ -204,7 +204,7 @@ import (
     "fmt"
     "sync"
     "time"
-    "github.com/fsyyft-go/kit/runtime/goroutine"
+    "github.com/fsyyft-go/monorepo/kit/runtime/goroutine"
 )
 
 func main() {
@@ -427,18 +427,3 @@ if err != nil {
 - [Go 语言运行时调度器](https://go.dev/src/runtime/HACKING.md)
 - [内部 G 结构定义](https://github.com/golang/go/blob/master/src/runtime/runtime2.go)
 - [TLS (Thread Local Storage) 在 Go 中的应用](https://go.dev/src/runtime/asm.s)
-
-## 贡献指南
-
-我们欢迎任何形式的贡献，包括但不限于：
-
-- 报告问题
-- 提交功能建议
-- 提交代码改进
-- 完善文档
-
-请参考我们的[贡献指南](https://github.com/fsyyft-go/kit/blob/main/CONTRIBUTING.md)了解详细信息。
-
-## 许可证
-
-本项目采用 MIT 许可证。查看 [LICENSE](https://github.com/fsyyft-go/kit/blob/main/LICENSE) 文件了解更多信息。
